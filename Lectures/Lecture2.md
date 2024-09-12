@@ -43,3 +43,24 @@ int Sum(int a, int b = 1, int c = 0) => a + b + c;
 - ```cs
   Sum(4, c: 7, b: y + 4);
   ```
+
+## Передача аргументов по ссылкам
+
+```cs
+void Inc(ref int x)
+{
+  x++;
+}
+
+x = 3;
+Inc(ref x);
+```
+
+```cs
+void Inc(out int x)
+{
+  x = 5;
+}
+
+Inc(out var x);
+```
