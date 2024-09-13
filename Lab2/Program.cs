@@ -1,6 +1,4 @@
-﻿
-using Lab2.Classes.BIM;
-using Lab2.Classes.BIM.Objects.Base;
+﻿using Lab2.Classes.BIM;
 using Lab2.Classes.BIM.Objects.Furniture;
 using Lab2.Classes.BIM.Objects.Rooms;
 using Lab2.Classes.BIM.Objects.Structures;
