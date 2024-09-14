@@ -64,3 +64,12 @@ project.AddStructure(new Building(2).Configure(building =>
         }));
     }));
 }));
+
+var lamp = (Lantern)project.Find("Лампа над плитой");
+lamp.Explode += (l, v) =>
+{
+    Console.WriteLine($"Lamp exploded with voltage {v} over limited {l.VoltageLimit}");
+};
+
+lamp.Push(200);
+lamp.Push(400);

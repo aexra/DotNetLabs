@@ -7,7 +7,7 @@ internal abstract class Room : BIMObject
 
     public Room() : base()
     {
-
+        Furnitures = new();
     }
 
     public Room Configure(Action<Room> roomBuilder)

@@ -7,7 +7,7 @@ internal abstract class Structure : BIMObject
 
     public Structure() : base()
     {
-
+        Rooms = new();
     }
 
     public Structure Configure(Action<Structure> structureBuilder)

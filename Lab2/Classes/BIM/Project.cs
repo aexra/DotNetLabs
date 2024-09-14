@@ -1,4 +1,5 @@
-﻿using Lab2.Classes.BIM.Objects.Base;
+﻿using Lab2.Classes.BIM.Base;
+using Lab2.Classes.BIM.Objects.Base;
 
 namespace Lab2.Classes.BIM;
 internal class Project
@@ -27,5 +28,13 @@ internal class Project
     {
         Structures.Add(structure);
         return this;
+    }
+
+    public BIMObject? Find(string name)
+    {
+        return (BIMObject)Structures.Find(s => s.Name == name) ?? 
+            (BIMObject)Structures.SelectMany(s => s.Rooms).ToList().Find(r => r.Name == name) ?? 
+            (BIMObject)Structures.SelectMany(s => s.Rooms).ToList().SelectMany(r => r.Furnitures).ToList().Find(f => f.Name == name) ?? 
+            null;
     }
 }

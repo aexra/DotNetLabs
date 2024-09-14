@@ -1,5 +1,5 @@
 ﻿namespace Lab2.Classes.BIM.Objects.Furniture;
-internal class Lantern : Base.Furniture
+internal class Lantern : Base.ElectricalApplience
 {
     private bool _isLighting = false;
     public bool IsLighting
@@ -19,7 +19,7 @@ internal class Lantern : Base.Furniture
     }
     public uint Lamps { get; private set; } = 1;
 
-    public Lantern(uint lamps = 1) : base()
+    public Lantern(uint lamps = 1, uint voltage = 220) : base(voltage)
     {
         Lamps = lamps;
     }
