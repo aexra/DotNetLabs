@@ -1,10 +1,15 @@
 ﻿using Lab4.Interfaces;
 
 namespace Lab4.Classes.Model.Base;
-internal class ElectricConsumer : IElectricConsumer
+internal abstract class ElectricConsumer : IElectricConsumer
 {
-    public string Name => throw new NotImplementedException();
-    public double Consumption => throw new NotImplementedException();
+    public string Name { get; set; }
+    public double Consumption { get; private set; }
+
+    public ElectricConsumer(double consumption = 1)
+    {
+        Consumption = consumption;
+    }
 
     public double Consume(IPowerNode node)
     {

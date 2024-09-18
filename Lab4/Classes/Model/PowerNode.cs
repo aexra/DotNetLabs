@@ -5,15 +5,18 @@ namespace Lab4.Classes.Model;
 internal class PowerNode : IPowerNode
 {
     public List<IElectricSource> Sources { get; private set; }
+    public List<IElectricConsumer> Consumers { get; private set; }
+
+    public double Capacity => Sources.Select(s => s.PowerLimit).Sum();
 
     public PowerNode()
     {
         Sources = new();
+        Consumers = new();
     }
-    public PowerNode(params ElectricSource[] sources)
+    public PowerNode(params ElectricSource[] sources) : this()
     {
         Sources = new(sources);
-
         foreach (var source in Sources)
         {
             SourceConnected?.Invoke(this, source);
@@ -23,18 +26,17 @@ internal class PowerNode : IPowerNode
     public event IPowerNode.FuzeBrokenHandler FuzeBroken;
     public event IPowerNode.SourceConnectedHandler SourceConnected;
     public event IPowerNode.SourceDisconnectedHandler SourceDisconnected;
+    public event IPowerNode.ConsumerConnectedHandler ConsumerConnected;
+    public event IPowerNode.ConsumerDisconnectedHandler ConsumerDisconnected;
 
-    public IPowerNode Run()
+    public IPowerNode Run(out double powerUsed)
     {
-        var powerLimit = Sources.Select(s => s.PowerLimit).Sum();
-        var firstLayersConsumers = Sources.SelectMany(s => s.Consumers);
+        powerUsed = 0;
 
-        double powerUsed = 0;
-
-        foreach (var consumer in firstLayersConsumers)
+        foreach (var consumer in Consumers)
         {
             powerUsed += consumer.Consume(this);
-            if (powerUsed > powerLimit)
+            if (powerUsed > Capacity)
             {
                 FuzeBroken?.Invoke(this);
                 break;
@@ -54,6 +56,19 @@ internal class PowerNode : IPowerNode
     {
         Sources.Remove(source);
         SourceDisconnected?.Invoke(this, source);
+        return this;
+    }
+
+    public IPowerNode Connect(IElectricConsumer consumer)
+    {
+        Consumers.Add(consumer);
+        ConsumerConnected?.Invoke(this, consumer);
+        return this;
+    }
+    public IPowerNode Disconnect(IElectricConsumer consumer)
+    {
+        Consumers.Remove(consumer);
+        ConsumerDisconnected?.Invoke(this, consumer);
         return this;
     }
 }
