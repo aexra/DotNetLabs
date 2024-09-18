@@ -17,10 +17,6 @@ internal class PowerNode : IPowerNode
     public PowerNode(params ElectricSource[] sources) : this()
     {
         Sources = new(sources);
-        foreach (var source in Sources)
-        {
-            SourceConnected?.Invoke(this, source);
-        }
     }
 
     public event IPowerNode.FuzeBrokenHandler FuzeBroken;

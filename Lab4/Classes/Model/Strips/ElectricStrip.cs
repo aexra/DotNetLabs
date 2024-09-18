@@ -12,9 +12,21 @@ internal class ElectricStrip : IElectricStrip
     public event IElectricStrip.ConsumerConnectedHandler ConsumerConnected;
     public event IElectricStrip.ConsumerDisconnectedHandler ConsumerDisconnected;
 
+    public ElectricStrip(uint consumersLimit = 1)
+    {
+        Consumers = new();
+        ConsumersLimit = consumersLimit;
+    }
+    public ElectricStrip(uint consumersLimit = 1, params IElectricConsumer[] consumers) : this(consumersLimit)
+    {
+        Consumers = new(consumers);
+        if (Consumers.Count > ConsumersLimit) throw(new Exception("Not enough consumer ports"));
+    }
+
     public IElectricStrip Connect(IElectricConsumer consumer)
     {
         Consumers.Add(consumer);
+        if (Consumers.Count > ConsumersLimit) throw (new Exception("Not enough consumer ports"));
         ConsumerConnected?.Invoke(this, consumer);
         return this;
     }
