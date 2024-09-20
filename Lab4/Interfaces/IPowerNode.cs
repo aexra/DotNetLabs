@@ -6,7 +6,7 @@ internal interface IPowerNode
 
     public double Capacity { get; }
 
-    public delegate void FuzeBrokenHandler(IPowerNode node);
+    public delegate void FuzeBrokenHandler(IPowerNode node, double powerUsed);
     public delegate void SourceConnectedHandler(IPowerNode node, IElectricSource source);
     public delegate void SourceDisconnectedHandler(IPowerNode node, IElectricSource source);
     public delegate void ConsumerConnectedHandler(IPowerNode node, IElectricConsumer consumer);

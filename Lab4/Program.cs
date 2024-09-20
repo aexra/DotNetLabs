@@ -11,7 +11,12 @@ var node = new PowerNode(
     new NuclearPowerPlant(powerLimit: 10000)
 );
 
-node.Connect(new Kettle())
+node.FuzeBroken += (n, e) =>
+{
+    Console.WriteLine($"===============\nFuze broken.\nCapacity: {n.Capacity}\nUsed: {e}\n===============");
+};
+
+node.Connect(new Kettle(20000000))
     .Connect(new Kettle())
     .Connect(new ElectricStrip(2, new Kettle(), new Kettle()));
 

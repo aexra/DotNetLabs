@@ -32,11 +32,11 @@ internal class PowerNode : IPowerNode
         foreach (var consumer in Consumers)
         {
             powerUsed += consumer.Consume(this);
-            if (powerUsed > Capacity)
-            {
-                FuzeBroken?.Invoke(this);
-                break;
-            }
+        }
+
+        if (powerUsed > Capacity)
+        {
+            FuzeBroken?.Invoke(this, powerUsed);
         }
 
         return this;
