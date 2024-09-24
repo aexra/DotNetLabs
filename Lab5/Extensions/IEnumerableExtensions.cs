@@ -3,7 +3,7 @@ internal static class IEnumerableExtensions
 {
     public static IEnumerable<T> Ordered<T, K>(this IEnumerable<T> container, Func<T, K> keySelector) where K : IComparable<K>
     {
-        var sortingArray = new T[container.Count()];
+        var sortingArray = container.ToArray();
 
         var sorted = false;
         while (!sorted)
