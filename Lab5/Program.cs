@@ -26,7 +26,7 @@ foreach (var item in input)
 }
 
 Console.WriteLine("=======1=======\n");
-Console.WriteLine(string.Join("\n", (from kv in dict orderby kv.Value descending select kv).Select(kv => $"{kv.Key} -> {kv.Value}")));
+Console.WriteLine(string.Join("\n", from kv in dict orderby kv.Value descending select $"{kv.Key} -> {kv.Value}"));
 
 Console.WriteLine("\n\n=======2=======\n");
-Console.WriteLine(string.Join("\n", (from kv in input.CountItems() orderby kv.Value descending select kv).Select(kv => $"{kv.Key} -> {kv.Value}")));
+Console.WriteLine(string.Join("\n", from kv in input.CountItems() orderby kv.Value descending select $"{kv.Key} -> {kv.Value}"));
