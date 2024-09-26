@@ -1,12 +1,13 @@
-﻿using Lab2.Classes.BIM;
+﻿///
+/// .NET Lab #2
+/// Var. 3 (19)
+///
+
+using Lab2.Classes.BIM;
 using Lab2.Classes.BIM.Objects.Furniture;
 using Lab2.Classes.BIM.Objects.Rooms;
 using Lab2.Classes.BIM.Objects.Structures;
 
-///
-/// .NET Lab #2
-/// Ver. 3 (19)
-///
 var project = ProjectManager.NewProject()
     .Configure(builder =>
     {

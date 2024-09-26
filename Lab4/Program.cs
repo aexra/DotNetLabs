@@ -1,4 +1,9 @@
-﻿using Lab4.Classes.Model;
+﻿///
+/// .NET Lab #3,4
+/// Var. 3 (19)
+///
+
+using Lab4.Classes.Model;
 using Lab4.Classes.Model.Consumers;
 using Lab4.Classes.Model.Sources;
 using Lab4.Classes.Model.Strips;

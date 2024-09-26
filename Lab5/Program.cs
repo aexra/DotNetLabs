@@ -1,5 +1,15 @@
-﻿using Lab5.Extensions;
+﻿///
+/// .NET Lab #5
+/// Var. 3 (19)
+///
+
+using Lab5.Extensions;
+
+/// MAIN
+
 //Console.WriteLine(string.Join(" ", Console.ReadLine().Split(" ").ToMyContainer().Ordered(s => s.Length)));
+
+/// EXTRA
 
 var input = "dolgov pager ligma dolgov pager ligma pager ballz pager".Split(" ").ToMyContainer();
 

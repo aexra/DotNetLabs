@@ -1,6 +1,6 @@
 ﻿///
 /// .NET Lab #1
-/// Ver. 3 (19)
+/// Var. 3 (19)
 ///
 
 Console.WriteLine("Enter int array separated with spaces...");
