@@ -33,3 +33,11 @@ var t0_1 = MakeTab(0, 1, 0.01);
 t0_1(Math.Sin);
 t0_1(x => 2 * x + 1);
 ```
+
+### Особенности делегатов, которых нет в других функциональных языках
+#### Мультиделегат
+
+void LogConsole(object o) => Console.WriteLine(o);
+void LogFile(object o) => File.AppendText("a.log", o.ToString());
+
+var l = LogConsole;
