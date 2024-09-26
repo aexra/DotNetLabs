@@ -27,4 +27,24 @@ internal static class IEnumerableExtensions
             yield return v;
         }
     }
+
+    public static IEnumerable<KeyValuePair<T, uint>> CountItems<T>(this IEnumerable<T> container)
+    {
+        var dict = new Dictionary<T, uint>();
+        foreach (var item in container)
+        {
+            if (dict.ContainsKey(item))
+            {
+                dict[item]++;
+                continue;
+            }
+
+            dict.Add(item, 1);
+        }
+
+        foreach (var kv in dict)
+        {
+            yield return kv;
+        }
+    }
 }
